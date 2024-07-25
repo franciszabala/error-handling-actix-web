@@ -1,0 +1,30 @@
+/target
+# General
+.DS_Store
+Thumbs.db
+
+# Rust
+target/
+**/*.rs.bk
+
+# Cargo
+Cargo.lock
+Cargo.toml.orig
+.cargo/
+.cargo_vcs_info.json
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.temp
+*.log
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# Other
+*.rs.bk
