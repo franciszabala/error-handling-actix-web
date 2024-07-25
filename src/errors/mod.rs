@@ -5,7 +5,6 @@ use actix_web::http::StatusCode;
 use actix_web::{HttpResponse};
 use quick_xml::se::to_string;
 use serde::{Deserialize, Serialize};
-use std::fmt;
 
 #[derive(thiserror::Error, Debug)]
 #[error("...")]
@@ -32,6 +31,7 @@ pub enum Error {
 
 impl Error {
 
+    //Added this function to get the status code from the enum
     pub fn get_status_code(&self) -> StatusCode {
         self.get_codes().0
     }
@@ -51,6 +51,7 @@ impl Error {
                 (StatusCode::INTERNAL_SERVER_ERROR, 5001)
             }
 
+
             Error::RunSyncTask(_) => (StatusCode::INTERNAL_SERVER_ERROR, 5005),
             Error::HashPassword(_) => (StatusCode::INTERNAL_SERVER_ERROR, 5006),
         }
@@ -66,6 +67,8 @@ impl Error {
     }
 }
 
+
+//I learned here that Rust allows you to have multiple chunks of impl {}
 impl Error {
     pub fn error_response(&self) -> HttpResponse {
         let status_code = self.get_status_code();
